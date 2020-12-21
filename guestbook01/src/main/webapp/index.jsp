@@ -4,6 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%
+	request.setCharacterEncoding("utf-8");
 	List<GuestbookVo> list = new GuestbookDao().findAll();
 %>
 
@@ -31,21 +32,22 @@
 	</form>
 
 	<br>
-	<%	int count = 1;
+	<%	int count = list.size();
+		int index = 0;
 		for(GuestbookVo vo : list){
 	%>
 	<table width=510 border=1>
 		<tr >
-			<td>[<%= count %>]</td>
+			<td>[<%= count-index++  %>]</td>
 			<td><%=vo.getName() %></td>
-			<td><%=vo.getDate() %></td>
+			<td><%=vo.getRegDate() %></td>
 			<td ><a  href="/guestbook01/deleteform.jsp?no=<%=vo.getNo()%>">삭제</a></td>
 		</tr>
 		<tr>
-			<td colspan=4><%=vo.getMessage() %></td>
+			<td colspan=4><%=vo.getMessage().replaceAll("\n", "<br/>") %></td> <!-- 클라이언트에서 바꾸기! -->
 		</tr>
 	</table>
-	<% count++;
+	<%
 		}
 	%>
 </body>

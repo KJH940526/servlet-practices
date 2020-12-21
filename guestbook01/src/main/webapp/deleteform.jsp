@@ -16,8 +16,8 @@
 </head>
 <body>
 
-	<form method="get" action="delete.jsp">
-
+	<form method="post" action="delete.jsp">
+		<!--  <input type='hidden' name='no' value='<%=request.getParameter("no") %>'> 이것도 가능-->
 		<input type='hidden' name='no' value=<%=no %> >
 		<table>
 			<tr>

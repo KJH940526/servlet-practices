@@ -11,52 +11,6 @@ import java.util.List;
 import com.bitacademy.guestbook.vo.GuestbookVo;
 
 public class GuestbookDao {
-	public List<GuestbookVo> find(GuestbookVo vo1){
-		List<GuestbookVo> list = new ArrayList<>();
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		try {
-			conn = getConnection();
-			
-			String sql = 
-					" select no, password"+
-					" from guestbook";
-			pstmt = conn.prepareStatement(sql);
-			
-			rs = pstmt.executeQuery();
-			
-			while(rs.next()) {
-				Long no = rs.getLong(1);
-				String password = rs.getString(2);				
-				GuestbookVo vo = new GuestbookVo();
-				vo.setNo(no);
-				vo.setPassword(password);		
-				list.add(vo);
-			}
-			
-		} catch(SQLException e) {
-			System.out.println("error:" + e);
-		} finally {
-			try {
-				// 3. 자원정리
-				if (rs != null) {
-					rs.close();
-				}
-				if (pstmt != null) {
-					pstmt.close();
-				}
-				if (conn != null) {
-					conn.close();
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}	
-		return list;
-	}
-	
 	public List<GuestbookVo> findAll() {
 		List<GuestbookVo> list = new ArrayList<>();
 
@@ -67,27 +21,26 @@ public class GuestbookDao {
 		try {
 			conn = getConnection();
 			
-			String sql = 
-					" select no, name, password, message, req_date" +
-					" from guestbook"+
-					" order by req_date desc";
-			pstmt = conn.prepareStatement(sql);
+			String sql =
+					"   select no, name, date_format(reg_date, '%Y/%m/%d %H:%i:%s') as reg_date, message" +
+					"     from guestbook" +
+					" order by reg_date desc";
+				pstmt = conn.prepareStatement(sql);
 			
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
 				Long no = rs.getLong(1);
 				String name = rs.getString(2);
-				String password = rs.getString(3);
+				String reqDate = rs.getString(3);
 				String message = rs.getString(4);
-				String date = rs.getString(5);
 				
 				GuestbookVo vo = new GuestbookVo();
 				vo.setNo(no);
 				vo.setName(name);
-				vo.setPassword(password);
 				vo.setMessage(message);
-				vo.setDate(date);		
+				vo.setRegDate(reqDate);	
+				
 				list.add(vo);
 			}
 			
@@ -177,6 +130,7 @@ public class GuestbookDao {
 			pstmt.setString(2, vo.getPassword());
 			
 			// 5. sql문 실행
+			System.out.println(pstmt.executeUpdate());
 			int count = pstmt.executeUpdate();
 			
 			result = count == 1;
