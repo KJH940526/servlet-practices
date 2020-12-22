@@ -3,7 +3,7 @@
 <%@page import="com.bitacademy.emaillist.dao.EmaillistDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-	//request.getAttribute는 object를 리턴하기 떄문에 캐스팅해줘야한다!
+	//request.getAttribute는 object를 리턴하기 떄문에 캐스팅해줘야한다!			//getAttribute(String name)
 	List<EmaillistVo> list = (List<EmaillistVo>)(request.getAttribute("list"));
 %>
 <!DOCTYPE html>

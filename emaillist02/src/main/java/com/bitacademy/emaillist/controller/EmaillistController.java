@@ -43,7 +43,7 @@ public class EmaillistController extends HttpServlet {
 			List<EmaillistVo> list = new EmaillistDao().findAll(); //컨트롤하고 이제 뷰로 넘겨야함!
 			
 					//"list"는 jsp의 name이랑 같아야함!! 
-			request.setAttribute("list", list);
+			request.setAttribute("list", list); //setAttribute(String name, Object value)
 											//WEB_INF는 클라이언트예는 접근이 불가능하지만 서버에서는 접근가능
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/index.jsp");   //순서2
 			rd.forward(request, response); //순서3
@@ -69,3 +69,4 @@ public class EmaillistController extends HttpServlet {
 	}
 
 }
+
