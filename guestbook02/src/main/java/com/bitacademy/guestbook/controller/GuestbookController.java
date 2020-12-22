@@ -19,10 +19,10 @@ public class GuestbookController extends HttpServlet {
 			throws ServletException, IOException {
 		
 		request.setCharacterEncoding("utf-8");
-		String acctionName = request.getParameter("a");
+		String actionName = request.getParameter("a");
 
-		if ("add".equals(acctionName)) {
-			request.setCharacterEncoding("utf-8");
+		System.out.println("action>>"+actionName);
+		if ("add".equals(actionName)) {
 			String name = request.getParameter("name"); // 이름은 똑같게 하기
 			String password = request.getParameter("password");
 			String message = request.getParameter("message");
@@ -35,8 +35,7 @@ public class GuestbookController extends HttpServlet {
 			new GuestbookDao().insert(vo);
 			response.sendRedirect(request.getContextPath() + "/gb");
 
-		} else if ("delete".equals(acctionName)) {
-			request.setCharacterEncoding("utf-8");
+		} else if ("delete".equals(actionName)) {
 			
 			String no = (String)request.getAttribute("no");
 			String password = request.getParameter("password");
@@ -47,7 +46,7 @@ public class GuestbookController extends HttpServlet {
 			response.sendRedirect(request.getContextPath() + "/gb");
 			
 
-		} else if ("deleteform".equals(acctionName)) {
+		} else if ("deleteform".equals(actionName)) {
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/deleteform.jsp");
 			rd.forward(request, response);
 			
