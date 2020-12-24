@@ -40,8 +40,10 @@
 	-${param.a }-<br/>    <!-- url에 ? a=10&email=enddl0121@naver.com -->
 	-${param.email }-<br/>
 
-	
-	
-	
+	<h1>Map으로 값 받아오기</h1>
+	${map.ival }<br/>
+	${map.lval }<br/>
+	${map.fval }<br/>
+	${map.bval }<br/>
 </body>
 </html>
