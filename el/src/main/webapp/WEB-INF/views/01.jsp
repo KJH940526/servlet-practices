@@ -1,10 +1,8 @@
- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
- <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
- <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>  
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>  
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
 <% pageContext.setAttribute("newLine", "\n"); %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,15 +10,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>값 받아오기</h1>
+	<h1>값 받아보기</h1>
 	${iVal }<br/>
 	${lVal }<br/>
 	${fVal }<br/>
 	${bVal }<br/>
-	${sVal }<br/> 
 	${fn:replace(sVal, newLine, "<br>") }<br/>
-	-${dVal }- <br/>	<!-- 없으면 출력안함! null  -->
-	-${obj }- <br/>     <!-- 오브젝트가 null인 경우 안찍힘 -->
+	-${dVal }-<br/>
+	-${obj }-<br/>
 	${vo.no }<br/>
 	${vo.name }<br/>
 	
@@ -31,25 +28,25 @@
 	<h1>관계연산</h1>
 	${iVal == 10 }<br/>
 	${iVal < 5 }<br/>
-	<h3>자바연산 비추천!!</h3>
 	${obj == null }<br/>
 	${vo != null }<br/>
-	<h4>el 연산 추천!!</h4>
-	${empty obj }<br/>  
-	${not empty obj }<br/>  
+	${empty obj }<br/>
+	${not empty vo }<br/>
 	
 	<h1>논리연산</h1>
-	${iVal == 10 && lVal < 10000 }<br/>
+	${iVal == 10 && lval < 10000 }<br/>
 	${iVal < 5 || lval - 10 == 0 }<br/>
 	
 	<h1>요청 파라미터 값</h1>
-	-${param.a }-<br/>    <!-- url에 ? a=10&email=enddl0121@naver.com -->
+	-${param.a + 10 }-<br/> <!-- ?a=100&email=enddl0121@naver.com 이런식으로 값 받아오기 -->
 	-${param.email }-<br/>
-
-	<h1>Map으로 값 받아오기</h1>
+	
+	<h1>Map으로 값 받아보기</h1>
 	${map.ival }<br/>
 	${map.lval }<br/>
 	${map.fval }<br/>
 	${map.bval }<br/>
+	
+	
 </body>
 </html>
