@@ -9,7 +9,7 @@ public class GuestbookVo {
 	
 	@Override
 	public String toString() {
-		return "GuestbookVo [no=" + no + ", name=" + name + ", message=" + message + ", data=" + regDate + "]";
+		return "GuestbookVo [no=" + no + ", name=" + name + ", message=" + message + ", regDate=" + regDate + "]";
 	}
 	
 	public Long getNo() {
